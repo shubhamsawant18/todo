@@ -10,9 +10,9 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-connectDB(); // Connect Database
+connectDB(); 
 
-// Use Routes
+
 app.use('/api/tasks', taskRoutes);
 
 const PORT = process.env.PORT || 5000;
