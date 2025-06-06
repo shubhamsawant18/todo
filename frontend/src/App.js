@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import Navbar from './components/Navbar';
 import TaskForm from './components/TaskForm';
 import TaskList from './components/TaskList';
 
@@ -20,10 +21,12 @@ const App = () => {
   }, []);
 
   return (
-    <div>
-      <h1>To-Do List</h1>
-      <TaskForm refreshTasks={fetchTasks} />
-      <TaskList tasks={tasks} refreshTasks={fetchTasks} />
+    <div className="app-background">
+      <Navbar />
+      <div className="main-container">
+        <TaskForm refreshTasks={fetchTasks} />
+        <TaskList tasks={tasks} refreshTasks={fetchTasks} />
+      </div>
     </div>
   );
 };

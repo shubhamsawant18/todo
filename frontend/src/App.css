@@ -36,3 +36,30 @@
     transform: rotate(360deg);
   }
 }
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f2f5;
+}
+
+#root, .App {
+  min-height: 100vh;
+  padding-bottom: 50px;
+}
+/* styles/App.css */
+.app-background {
+  min-height: 100vh;
+  background: linear-gradient(135deg);
+  padding: 40px 0;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.main-container {
+  max-width: 700px;
+  margin: auto;
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  
+}

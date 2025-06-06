@@ -1,21 +1,31 @@
 import { useState } from 'react';
 import axios from 'axios';
+import '../styles/TaskForm.css';
 
 const TaskForm = ({ refreshTasks }) => {
-  const [title, setTitle] = useState('');
+  const [task, setTask] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!title.trim()) return;
-    await axios.post('http://localhost:5000/api/tasks', { title });
-    setTitle('');
-    refreshTasks();
+    if (!task.trim()) return;
+    try {
+      await axios.post('http://localhost:5000/api/tasks', { title: task });
+      setTask('');
+      refreshTasks();
+    } catch (error) {
+      console.error('Error adding task:', error);
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Add a task" />
-      <button type="submit">Add Task</button>
+    <form onSubmit={handleSubmit} className="task-form">
+      <input
+        type="text"
+        value={task}
+        onChange={(e) => setTask(e.target.value)}
+        placeholder="What do you need to do?"
+      />
+      <button type="submit">➕ Add Task</button>
     </form>
   );
 };
