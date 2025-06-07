@@ -2,6 +2,8 @@ import { useState } from 'react';
 import axios from 'axios';
 import '../styles/TaskForm.css';
 
+const BASE_URL = process.env.REACT_APP_API_URL;
+
 const TaskForm = ({ refreshTasks }) => {
   const [task, setTask] = useState('');
 
@@ -9,7 +11,7 @@ const TaskForm = ({ refreshTasks }) => {
     e.preventDefault();
     if (!task.trim()) return;
     try {
-      await axios.post('http://localhost:5000/api/tasks', { title: task });
+      await axios.post(`${BASE_URL}/api/tasks`, { title: task });
       setTask('');
       refreshTasks();
     } catch (error) {

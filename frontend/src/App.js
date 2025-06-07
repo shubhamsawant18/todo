@@ -4,12 +4,14 @@ import Navbar from './components/Navbar';
 import TaskForm from './components/TaskForm';
 import TaskList from './components/TaskList';
 
+const BASE_URL = process.env.REACT_APP_API_URL;
+
 const App = () => {
   const [tasks, setTasks] = useState([]);
 
   const fetchTasks = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/tasks');
+      const response = await axios.get(`${BASE_URL}/api/tasks`);
       setTasks(response.data);
     } catch (error) {
       console.error('Error fetching tasks:', error);

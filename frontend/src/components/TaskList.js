@@ -2,6 +2,8 @@ import { useState } from 'react';
 import axios from 'axios';
 import '../styles/TaskList.css';
 
+const BASE_URL = process.env.REACT_APP_API_URL;
+
 const TaskList = ({ tasks, refreshTasks }) => {
   const [editTaskId, setEditTaskId] = useState(null);
   const [updatedTitle, setUpdatedTitle] = useState('');
@@ -13,7 +15,7 @@ const TaskList = ({ tasks, refreshTasks }) => {
 
   const saveUpdatedTask = async (taskId) => {
     try {
-      await axios.put(`http://localhost:5000/api/tasks/${taskId}`, { title: updatedTitle });
+      await axios.put(`${BASE_URL}/api/tasks/${taskId}`, { title: updatedTitle });
       setEditTaskId(null);
       refreshTasks();
     } catch (error) {
@@ -23,7 +25,7 @@ const TaskList = ({ tasks, refreshTasks }) => {
 
   const toggleComplete = async (task) => {
     try {
-      await axios.put(`http://localhost:5000/api/tasks/${task._id}`, {
+      await axios.put(`${BASE_URL}/api/tasks/${task._id}`, {
         title: task.title,
         completed: !task.completed,
       });
@@ -35,7 +37,7 @@ const TaskList = ({ tasks, refreshTasks }) => {
 
   const deleteTask = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/tasks/${id}`);
+      await axios.delete(`${BASE_URL}/api/tasks/${id}`);
       refreshTasks();
     } catch (error) {
       console.error('Error deleting task:', error);
@@ -63,7 +65,7 @@ const TaskList = ({ tasks, refreshTasks }) => {
                 <span className="task-title">{task.title}</span>
                 <div className="task-actions">
                   <button onClick={() => startEditing(task)}>✏️ Edit</button>
-                  <button onClick={() => toggleComplete(task)}> Toggle</button>
+                  <button onClick={() => toggleComplete(task)}>Toggle</button>
                   <button onClick={() => deleteTask(task._id)}>🗑 Delete</button>
                 </div>
               </>
